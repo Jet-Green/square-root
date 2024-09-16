@@ -8,12 +8,12 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
-  runtimeConfig: {
-    public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE,
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
-    },
-  },
+  // runtimeConfig: {
+    // public: {
+      // apiBase: process.env.NUXT_PUBLIC_API_BASE,
+      // siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
+    // },
+  // },
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
@@ -35,6 +35,6 @@ export default defineNuxtConfig({
     },
   },
   devServer: {
-    port: 3000
+    port: 3022
   }
 })
