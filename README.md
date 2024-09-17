@@ -2,6 +2,9 @@
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+## Color Scheme 
+https://colorscheme.ru/#3n21T--Rsw0w0
+
 ## Setup
 
 Make sure to install the dependencies:
