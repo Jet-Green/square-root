@@ -16,11 +16,6 @@ body {
   margin: 0;
 }
 
-.blue-gradient {
-  background: rgb(108, 215, 241);
-  background: linear-gradient(90deg, rgba(108, 215, 241, 0.5) 0%, rgba(60, 206, 241, 0.5) 50%);
-}
-
 .black-bg {
   background-color: $color-black;
   color: $color-white;
