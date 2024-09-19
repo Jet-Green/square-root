@@ -1,12 +1,24 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger)
+
+onMounted(() => {
+  // gsap.to('.main-title', {
+  //   scrollTrigger: {
+  //     trigger: '.main-title',
+  //     pin: true,
+  //   }
+  // })
+})
+</script>
 
 <template>
   <div class="descent-gradient">
-    <v-container class="d-flex justify-center align-center">
-      <span class="main-title"> Calculator </span>
-      <!-- <div class="black-bg">
-        dads
-      </div> -->
+    <v-container class="text-center" style="position: relative; height: 100%;">
+        <span class="main-title"> Calculator </span>
+      
     </v-container>
   </div>
   <ClientOnly>
@@ -16,6 +28,9 @@
 
 <style scoped lang="scss">
 .main-title {
+  position: sticky;
+  top: 10vh;
+
   font-weight: 800;
   font-size: clamp(3.4375rem, 2.4537rem + 5.2469vw, 8.75rem);
   user-select: none;

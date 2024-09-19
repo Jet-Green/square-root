@@ -1,24 +1,5 @@
 <script setup lang="ts">
 onMounted(() => {
-  let stars: any = document.getElementById("stars")
-  let moon: any = document.getElementById("moon")
-  let mountains_behind: any = document.getElementById("mountains_behind")
-  let mountains_front: any = document.getElementById("mountains_front")
-  let text: any = document.getElementById("text")
-  let button: any = document.getElementById("button")
-
-  function parallax() {
-    let value = window.scrollY
-    stars.style.left = value * 0.25 + "px"
-    moon.style.top = value * 1.05 + "px"
-    mountains_behind.style.top = value * 0.5 + "px"
-    mountains_front.style.top = value * 0 + "px"
-    text.style.marginRight = value * 4 + "px"
-    text.style.marginTop = value * 1.5 + "px"
-    button.style.marginTop = value * 1.5 + "px"
-  }
-
-  window.addEventListener("scroll", parallax)
 })
 </script>
 <template>
@@ -28,10 +9,10 @@ onMounted(() => {
     /* background: linear-gradient(180deg, rgba(2,31,75,1) 0%, rgba(117,151,222,1) 75%); */
   ">
     <img src="../assets/images/stars.png" alt="stars" id="stars" />
-    <!-- <img src="../assets/images/moon.png" alt="moon" id="moon" /> -->
+    <span>&nbsp;</span>
     <img src="../assets/images/mountains_behind.png" alt="mountains_behind" id="mountains_behind" />
     <h2 id="text">Moon Light</h2>
-    <span></span>
+    <span>&nbsp;</span>
     <img src="../assets/images/mountains_front.png" alt="mountains_front" id="mountains_front" />
   </section>
 </template>
@@ -48,6 +29,7 @@ section {
   position: relative;
   width: 100%;
   height: 125vh;
+  height: auto;
   padding: 100px;
   display: flex;
   justify-content: center;
