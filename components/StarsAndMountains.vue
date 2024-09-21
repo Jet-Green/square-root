@@ -11,12 +11,15 @@ onMounted(() => {
     <img src="../assets/images/stars.png" alt="stars" id="stars" />
     <span>&nbsp;</span>
     <img src="../assets/images/mountains_behind.png" alt="mountains_behind" id="mountains_behind" />
-    <h2 id="text">Moon Light</h2>
     <span>&nbsp;</span>
+    <Calculator />
     <img src="../assets/images/mountains_front.png" alt="mountains_front" id="mountains_front" />
   </section>
 </template>
 <style scoped lang="scss">
+img {
+  user-select: none;
+}
 ul {
   list-style: none;
 }
