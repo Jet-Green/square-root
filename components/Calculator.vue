@@ -5,6 +5,13 @@ let accuracy = ref<number>(2)
 
 let errors = ref<string[]>()
 
+let sliderColor = computed(() => {
+  if (accuracy.value <= 2) return ''
+  if (accuracy.value > 2 && accuracy.value <= 6) return '#FFB873'
+  if (accuracy.value > 6 && accuracy.value <= 8) return '#FF9F40'
+  return '#FF7F00'
+})
+
 function calculate() {
   errors.value = []
   let c = calcInput.value
@@ -27,7 +34,7 @@ function calculate() {
       }
     }
     if (num < 0) {
-      result.value = "±" + String(Math.sqrt(Math.abs(num))) + " i"
+      result.value = "±" + String(Math.sqrt(Math.abs(num)).toFixed(accuracy.value)) + "i"
     }
   } else {
     // Complex numbers
@@ -37,12 +44,12 @@ function calculate() {
 
     if (complexRegex.test(String(calcInput.value))) {
       let splitted = calcInput.value.split(" ")
-      console.log(splitted);
-      
+      console.log(splitted)
+
       // если введено с R и с I частью
       if (splitted.length == 3) {
         const R = Number(splitted[0])
-        let I;
+        let I
         // введено 2 + i, без множителя перед i
         if (splitted[2].length == 1) {
           I = 1
@@ -63,12 +70,12 @@ function calculate() {
         const sin = Math.sin(fi / 2)
 
         result.value =
-          String((nZ * cos).toFixed(accuracy.value)) + " + " + "i " + String((nZ * sin).toFixed(accuracy.value))
+          String((nZ * cos).toFixed(accuracy.value)) + " + " + "i" + String((nZ * sin).toFixed(accuracy.value))
         return
-      } 
+      }
       // если введено только с I частью
       else if (splitted.length == 1) {
-        let I;
+        let I
         // введено просто i
         if (splitted[0].length == 1) {
           I = 1
@@ -77,7 +84,7 @@ function calculate() {
         }
         const z = Math.abs(I)
 
-        let fi;
+        let fi
         if (I >= 0) fi = Math.PI / 2
         else fi = (3 * Math.PI) / 2
 
@@ -112,17 +119,54 @@ watch(calcInput, (newInp, oldInp) => {
 </script>
 <template>
   <v-card class="pa-4" style="z-index: 9999">
-    Введите выражение
-    <v-text-field v-model="calcInput" :error-messages="errors"></v-text-field>
-    Точность
-    <v-text-field v-model="accuracy" type="number" :min="1" placeholder="Кол-во знаков после запятой"></v-text-field>
+    <v-row>
+      <v-col :cols="12" :md="6" :lg="8">
+        <div class="calc-container">
+          <img src="../assets//images/square-root.svg" alt="" />
 
-    Ответ: <span class="result">{{ result }}</span>
+          <v-text-field
+            class="calc-input"
+            v-model="calcInput"
+            :error-messages="errors"
+            variant="outlined"
+          ></v-text-field>
+        </div>
+      </v-col>
+      <v-col :cols="12" :md="6" :lg="4" class="d-flex justify-center align-center">
+        <span class="result">= {{ result }}</span>
+      </v-col>
+      <v-col :cols="12">
+        <div class="text-caption">Знаков после запятой</div>
+        <v-slider v-model="accuracy" :thumb-label="true" :step="1" :min="1" :max="12" hide-details :color="sliderColor">
+          <template v-slot:append> 😍 </template>
+          <template v-slot:prepend> 😢 </template>
+          <template append-icon>
+            <!-- {{ ['😭', '😢', '☹️', '🙁', '😐', '🙂', '😊', '😁', '😄', '😍'][Math.min(Math.floor(modelValue / 10), 10)] }} -->
+          </template>
+          <!-- <template v-slot:thumb-label="{ modelValue }" style="color: #FFB873;">
+
+            {{ modelValue }}
+          </template> -->
+        </v-slider>
+      </v-col>
+    </v-row>
+    <!-- <v-text-field v-model="accuracy" type="number" :min="1" placeholder="Кол-во знаков после запятой"></v-text-field> -->
   </v-card>
 </template>
 <style scoped lang="scss">
 .result {
-  font-size: 20px;
+  font-size: clamp(1.125rem, 0.8267rem + 0.8523vw, 1.5rem);
   font-weight: 500;
+  word-break: keep-all;
+}
+.calc-container {
+  position: relative;
+  overflow-x: hidden;
+}
+.calc-input {
+  position: absolute;
+  bottom: 0;
+  width: 70%;
+  left: 60px;
 }
 </style>

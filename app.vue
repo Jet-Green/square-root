@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  title: "Тупой калькулятор!",
+  title: '"Умный" калькулятор!',
 })
 </script>
 <template>
