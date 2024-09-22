@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { gsap } from "gsap"
+import { TextPlugin } from "gsap/TextPlugin"
+gsap.registerPlugin(TextPlugin)
+
 let calcInput = ref<string>("")
 let result = ref<string>()
 let accuracy = ref<number>(2)
@@ -6,10 +10,10 @@ let accuracy = ref<number>(2)
 let errors = ref<string[]>()
 
 let sliderColor = computed(() => {
-  if (accuracy.value <= 2) return ''
-  if (accuracy.value > 2 && accuracy.value <= 6) return '#FFB873'
-  if (accuracy.value > 6 && accuracy.value <= 8) return '#FF9F40'
-  return '#FF7F00'
+  if (accuracy.value <= 2) return ""
+  if (accuracy.value > 2 && accuracy.value <= 6) return "#FFB873"
+  if (accuracy.value > 6 && accuracy.value <= 8) return "#FF9F40"
+  return "#FF7F00"
 })
 
 function calculate() {
@@ -75,32 +79,39 @@ function calculate() {
       }
       // если введено только с I частью
       else if (splitted.length == 1) {
-        let I
-        // введено просто i
-        if (splitted[0].length == 1) {
-          I = 1
+        // без пробелов и с Re и Im
+        let complexRegexWithoutSpaces = new RegExp(/[-]?[0-9]+[,.]*[0-9]*[+-]+[0-9]*[,.]?[0-9]*[i]{1}$/)
+        if (complexRegexWithoutSpaces.test(splitted[0])) {
+          errors.value = ["Нужны пробелы между числами"]
+          return
         } else {
-          I = Number(splitted[0].replace("i", ""))
+          let I
+          // введено просто i
+          if (splitted[0].length == 1) {
+            I = 1
+          } else {
+            I = Number(splitted[0].replace("i", ""))
+          }
+          const z = Math.abs(I)
+
+          let fi
+          if (I >= 0) fi = Math.PI / 2
+          else fi = (3 * Math.PI) / 2
+
+          const nZ = Math.sqrt(z)
+          const cos = Math.cos(fi / 2)
+          const sin = Math.sin(fi / 2)
+
+          result.value =
+            "±" +
+            "(" +
+            String((nZ * cos).toFixed(accuracy.value)) +
+            " + " +
+            "i " +
+            String((nZ * sin).toFixed(accuracy.value)) +
+            ")"
+          return
         }
-        const z = Math.abs(I)
-
-        let fi
-        if (I >= 0) fi = Math.PI / 2
-        else fi = (3 * Math.PI) / 2
-
-        const nZ = Math.sqrt(z)
-        const cos = Math.cos(fi / 2)
-        const sin = Math.sin(fi / 2)
-
-        result.value =
-          "±" +
-          "(" +
-          String((nZ * cos).toFixed(accuracy.value)) +
-          " + " +
-          "i " +
-          String((nZ * sin).toFixed(accuracy.value)) +
-          ")"
-        return
       }
     } else {
       errors.value = ["Это не число"]
@@ -108,12 +119,19 @@ function calculate() {
     }
   }
 }
-
+watch(result, (newVal) => {
+  gsap.to("#calc-result", {
+    duration: 0.5,
+    text: newVal,
+    ease: "none",
+  })
+})
 watch(accuracy, () => calculate())
 watch(calcInput, (newInp, oldInp) => {
   if (oldInp[oldInp.length - 1] == " " && newInp[newInp.length - 1] == " ") {
     calcInput.value = calcInput.value?.substring(0, calcInput.value.length - 1)
   }
+  calcInput.value = newInp.trimStart()
   calculate()
 })
 </script>
@@ -133,20 +151,14 @@ watch(calcInput, (newInp, oldInp) => {
         </div>
       </v-col>
       <v-col :cols="12" :md="6" :lg="4" class="d-flex justify-center align-center">
-        <span class="result">= {{ result }}</span>
+        <span class="result">= <span id="calc-result"></span></span>
       </v-col>
       <v-col :cols="12">
         <div class="text-caption">Знаков после запятой</div>
         <v-slider v-model="accuracy" :thumb-label="true" :step="1" :min="1" :max="12" hide-details :color="sliderColor">
           <template v-slot:append> 😍 </template>
           <template v-slot:prepend> 😢 </template>
-          <template append-icon>
-            <!-- {{ ['😭', '😢', '☹️', '🙁', '😐', '🙂', '😊', '😁', '😄', '😍'][Math.min(Math.floor(modelValue / 10), 10)] }} -->
-          </template>
-          <!-- <template v-slot:thumb-label="{ modelValue }" style="color: #FFB873;">
-
-            {{ modelValue }}
-          </template> -->
+          <!-- {{ ['😭', '😢', '☹️', '🙁', '😐', '🙂', '😊', '😁', '😄', '😍'][Math.min(Math.floor(modelValue / 10), 10)] }} -->
         </v-slider>
       </v-col>
     </v-row>
