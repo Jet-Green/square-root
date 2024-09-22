@@ -27,7 +27,7 @@ function calculate() {
       }
     }
     if (num < 0) {
-      result.value = "±" + String(Math.sqrt(Math.abs(num))) + "i"
+      result.value = "±" + String(Math.sqrt(Math.abs(num))) + " i"
     }
   } else {
     // Complex numbers
