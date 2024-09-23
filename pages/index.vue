@@ -7,12 +7,14 @@ onMounted(() => {
   let tl1 = gsap.timeline()
   tl1.to(".first-card", {
     opacity: 1,
+    x: 0,
     duration: 0.5,
   })
   tl1.to(
     ".first-card",
     {
       opacity: 0,
+      x: -200,
       duration: 0.5,
     },
     "+=2"
@@ -31,12 +33,14 @@ onMounted(() => {
   let tl2 = gsap.timeline()
   tl2.to(".second-card", {
     opacity: 1,
+    x: 0,
     duration: 0.5,
   })
   tl2.to(
     ".second-card",
     {
       opacity: 0,
+      x: 200,
       duration: 0.5,
     },
     "+=2"
@@ -64,8 +68,8 @@ onMounted(() => {
 
         <v-col cols="12" class="first-card">
           <v-row>
-            <v-col cols="1"> </v-col>
-            <v-col cols="6">
+            <v-col cols="0" md="1"> </v-col>
+            <v-col cols="12" md="6">
               <v-card class="message-card rounded-lg">
                 <v-skeleton-loader type="table-heading, list-item-two-line, image"></v-skeleton-loader>
               </v-card>
@@ -74,8 +78,8 @@ onMounted(() => {
         </v-col>
         <v-col cols="12" class="second-card">
           <v-row>
-            <v-col cols="5"> </v-col>
-            <v-col cols="6">
+            <v-col cols="0" md="5"> </v-col>
+            <v-col cols="12" md="6">
               <v-card class="message-card rounded-lg">
                 <v-skeleton-loader type="table-heading, list-item-two-line, image"></v-skeleton-loader>
               </v-card>
