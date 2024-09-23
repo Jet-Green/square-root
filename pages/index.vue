@@ -1,40 +1,99 @@
 <script lang="ts" setup>
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
-
 onMounted(() => {
-  // gsap.to('.main-title', {
-  //   scrollTrigger: {
-  //     trigger: '.main-title',
-  //     pin: true,
-  //   }
-  // })
+  let tl1 = gsap.timeline()
+  tl1.to(".first-card", {
+    opacity: 1,
+    duration: 0.5,
+  })
+  tl1.to(
+    ".first-card",
+    {
+      opacity: 0,
+      duration: 0.5,
+    },
+    "+=2"
+  )
+
+  ScrollTrigger.create({
+    animation: tl1,
+    trigger: ".first-card",
+    start: "top 25%",
+    end: "+=275%",
+    scrub: true,
+    pin: true,
+    anticipatePin: 1,
+  })
+
+  let tl2 = gsap.timeline()
+  tl2.to(".second-card", {
+    opacity: 1,
+    duration: 0.5,
+  })
+  tl2.to(
+    ".second-card",
+    {
+      opacity: 0,
+      duration: 0.5,
+    },
+    "+=2"
+  )
+
+  ScrollTrigger.create({
+    animation: tl2,
+    trigger: ".second-card",
+    start: "top 25%",
+    end: "+=275%",
+    scrub: true,
+    pin: true,
+    anticipatePin: 1,
+  })
 })
 </script>
 
 <template>
   <div class="descent-gradient">
-    <v-container class="text-center" style="position: relative; height: 100%;">
-        <span class="main-title"> Calculator </span>
-      
+    <v-container class="text-center" style="height: 100%; overflow: hidden;">
+      <v-row>
+        <v-col cols="12" style="height: 90vh">
+          <div class="main-title">Калькулятор</div>
+        </v-col>
+
+        <v-col cols="12" class="first-card">
+          <v-row>
+            <v-col cols="1"> </v-col>
+            <v-col cols="6">
+              <v-card class="message-card rounded-lg">
+                <v-skeleton-loader type="table-heading, list-item-two-line, image"></v-skeleton-loader>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col cols="12" class="second-card">
+          <v-row>
+            <v-col cols="5"> </v-col>
+            <v-col cols="6">
+              <v-card class="message-card rounded-lg">
+                <v-skeleton-loader type="table-heading, list-item-two-line, image"></v-skeleton-loader>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
     </v-container>
-  </div>
-  <ClientOnly>
     <StarsAndMountains />
-  </ClientOnly>
+  </div>
 </template>
 
 <style scoped lang="scss">
 .main-title {
-  position: sticky;
-  top: 10vh;
-
   font-weight: 800;
   font-size: clamp(3.4375rem, 2.4537rem + 5.2469vw, 8.75rem);
   user-select: none;
-  margin-top: 20vh;
+  margin-top: 25vh;
 
   // цвет текста
   background: rgb(255, 159, 64);
@@ -56,6 +115,16 @@ onMounted(() => {
     rgba(2, 31, 75, 1) 100%
   );
 
-  height: 800vh;
+  height: 100%;
+}
+
+.first-card {
+  height: 300vh;
+  opacity: 0;
+}
+
+.second-card {
+  height: 300vh;
+  opacity: 0;
 }
 </style>
