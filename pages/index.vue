@@ -55,23 +55,54 @@ onMounted(() => {
     pin: true,
     anticipatePin: 1,
   })
+
+  let tl3 = gsap.timeline()
+  tl3.to(".third-card", {
+    opacity: 1,
+    x: 0,
+    duration: 1,
+  })
+  tl3.to(
+    ".third-card",
+    {
+      opacity: 0,
+      x: -200,
+      duration: 1,
+    },
+    "+=2"
+  )
+
+  ScrollTrigger.create({
+    animation: tl3,
+    trigger: ".third-card",
+    start: "top 25%",
+    end: "+=275%",
+    scrub: true,
+    pin: true,
+    anticipatePin: 1,
+  })
 })
 </script>
 
 <template>
   <div class="descent-gradient">
-    <v-container class="text-center" style="height: 100%; overflow: hidden;">
+    <v-container style="height: 100%; overflow: hidden">
       <v-row>
-        <v-col cols="12" style="height: 90vh">
+        <v-col cols="12" style="height: 90vh" class="text-center">
           <div class="main-title">Калькулятор</div>
         </v-col>
 
         <v-col cols="12" class="first-card">
           <v-row>
             <v-col cols="0" md="1"> </v-col>
-            <v-col cols="12" md="6">
-              <v-card class="message-card rounded-lg">
-                <v-skeleton-loader type="table-heading, list-item-two-line, image"></v-skeleton-loader>
+            <v-col cols="12" md="6" style="position: relative">
+              <v-card class="pa-4" style="z-index: 9999">
+                <v-row>
+                  <v-col cols="12">
+                    <h2>Извлекайте корень из положительных и отрицательных чисел</h2>
+                  </v-col>
+                </v-row>
+                <CalculatorExample :inputValues="['14', '-22', '11', '4']" :key="0" :showAccuracy="false" />
               </v-card>
             </v-col>
           </v-row>
@@ -79,9 +110,29 @@ onMounted(() => {
         <v-col cols="12" class="second-card">
           <v-row>
             <v-col cols="0" md="5"> </v-col>
-            <v-col cols="12" md="6">
-              <v-card class="message-card rounded-lg">
-                <v-skeleton-loader type="table-heading, list-item-two-line, image"></v-skeleton-loader>
+            <v-col cols="12" md="6" style="position: relative">
+              <v-card class="pa-4" style="z-index: 9999">
+                <v-row>
+                  <v-col cols="12">
+                    <h2>Настраивайте количество знаков после запятой</h2>
+                  </v-col>
+                </v-row>
+                <CalculatorExample :inputValues="['2']" :key="1" :showAccuracy="true" />
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col cols="12" class="third-card">
+          <v-row>
+            <v-col cols="0" md="1"> </v-col>
+            <v-col cols="12" md="6" style="position: relative">
+              <v-card class="pa-4" style="z-index: 9999">
+                <v-row>
+                  <v-col cols="12">
+                    <h2>Извлекайте корень из комплексных чисел</h2>
+                  </v-col>
+                </v-row>
+                <CalculatorExample :inputValues="['2i', '-2 + 4i', '4i', '2 + 2i']" :key="0" :showAccuracy="false" />
               </v-card>
             </v-col>
           </v-row>
@@ -128,6 +179,10 @@ onMounted(() => {
 }
 
 .second-card {
+  height: 300vh;
+  opacity: 0;
+}
+.third-card {
   height: 300vh;
   opacity: 0;
 }

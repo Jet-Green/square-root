@@ -12,7 +12,7 @@ onMounted(() => {
     <span>&nbsp;</span>
     <img src="../assets/images/mountains_behind.png" alt="mountains_behind" id="mountains_behind" />
     <span>&nbsp;</span>
-    <Calculator />
+    <Calculator :key="5" />
     <img src="../assets/images/mountains_front.png" alt="mountains_front" id="mountains_front" />
   </section>
 </template>
