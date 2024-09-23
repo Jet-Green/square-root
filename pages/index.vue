@@ -8,14 +8,14 @@ onMounted(() => {
   tl1.to(".first-card", {
     opacity: 1,
     x: 0,
-    duration: 0.5,
+    duration: 1,
   })
   tl1.to(
     ".first-card",
     {
       opacity: 0,
       x: -200,
-      duration: 0.5,
+      duration: 1,
     },
     "+=2"
   )
@@ -34,14 +34,14 @@ onMounted(() => {
   tl2.to(".second-card", {
     opacity: 1,
     x: 0,
-    duration: 0.5,
+    duration: 1,
   })
   tl2.to(
     ".second-card",
     {
       opacity: 0,
       x: 200,
-      duration: 0.5,
+      duration: 1,
     },
     "+=2"
   )
