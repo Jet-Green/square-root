@@ -90,6 +90,10 @@ onMounted(() => {
       <v-row>
         <v-col cols="12" style="height: 90vh" class="text-center">
           <div class="main-title">Калькулятор</div>
+          <div class="instruction-container">
+            <div class="instruction">Инструкция</div>
+            <span class="mdi mdi-arrow-down"></span>
+          </div>
         </v-col>
 
         <v-col cols="12" class="first-card">
@@ -157,6 +161,27 @@ onMounted(() => {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   // цвет текста
+}
+
+.instruction-container {
+  margin-top: 15vh;
+  display: flex;
+  flex-direction: column;
+
+  .mdi-arrow-down {
+    color: #ff9f40;
+    font-size: clamp(2.25rem, 1.7528rem + 1.4205vw, 2.875rem);
+  }
+}
+
+.instruction {
+  font-weight: 600;
+  font-size: clamp(1.625rem, 1.2273rem + 1.1364vw, 2.125rem);
+  background: rgb(255, 159, 64);
+  background: linear-gradient(180deg, rgba(255, 159, 64, 0.9) 50%, rgba(60, 206, 241, 0.3) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .descent-gradient {
