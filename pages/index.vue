@@ -152,8 +152,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .main-title {
   font-weight: 800;
-  font-size: clamp(2.25rem, 0.858rem + 3.9773vw, 4rem);
-  user-select: none;
+  font-size: clamp(2.25rem, 0.5597rem + 4.8295vw, 4.375rem);  user-select: none;
   margin-top: 25vh;
 
   // цвет текста
