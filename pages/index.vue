@@ -165,7 +165,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .main-title {
   font-weight: 800;
-  font-size: clamp(3.4375rem, 2.4537rem + 5.2469vw, 8.75rem);
+  font-size: clamp(2.25rem, 1.4545rem + 2.2727vw, 3.25rem);
   user-select: none;
   margin-top: 25vh;
 
