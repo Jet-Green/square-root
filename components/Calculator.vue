@@ -148,7 +148,7 @@ watch(calcInput, (newInp, oldInp) => {
 })
 </script>
 <template>
-  <v-card class="pa-4" style="z-index: 9999">
+  <v-card class="pa-4" style="z-index: 99">
     <v-row>
       <v-col :cols="12" :md="6" :lg="8">
         <div class="calc-container">

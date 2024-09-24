@@ -1,11 +1,4 @@
 <script lang="ts" setup>
-const { locale, locales } = useI18n()
-const switchLocalePath = useSwitchLocalePath()
-
-const availableLocales = computed(() => {
-  return locales.value.filter((i) => i.code !== locale.value)
-})
-
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
@@ -94,12 +87,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <div style="position: absolute; top: 0;">
-    locales:
-    <NuxtLink v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">
-      {{ locale.name }}
-    </NuxtLink>
-  </div>
   <div class="descent-gradient">
     <v-container style="height: 100%; overflow: hidden">
       <v-row>
@@ -115,7 +102,7 @@ onMounted(() => {
           <v-row>
             <v-col cols="0" md="1"> </v-col>
             <v-col cols="12" md="6" style="position: relative">
-              <v-card class="pa-4" style="z-index: 9999">
+              <v-card class="pa-4" style="z-index: 99">
                 <v-row>
                   <v-col cols="12">
                     <h2>{{ LOC.firstCard }}</h2>
