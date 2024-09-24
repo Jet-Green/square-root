@@ -1,18 +1,24 @@
 <script setup lang="ts">
-onMounted(() => {
-})
+onMounted(() => {})
 </script>
 <template>
-  <section style="
-    background: rgb(2,31,75);
-    min-height: 100vh;
-    /* background: linear-gradient(180deg, rgba(2,31,75,1) 0%, rgba(117,151,222,1) 75%); */
-  ">
+  <section
+    style="
+      background: rgb(2, 31, 75);
+      min-height: 100vh;
+      /* background: linear-gradient(180deg, rgba(2,31,75,1) 0%, rgba(117,151,222,1) 75%); */
+    "
+  >
     <img src="../assets/images/stars.png" alt="stars" id="stars" />
     <span>&nbsp;</span>
     <img src="../assets/images/mountains_behind.png" alt="mountains_behind" id="mountains_behind" />
     <span>&nbsp;</span>
     <Calculator :key="5" />
+    <div class="support cursor-pointer">
+      <a href="https://t.me/unenhi" target="_blank">
+        Служба поддержки
+      </a>
+    </div>
     <img src="../assets/images/mountains_front.png" alt="mountains_front" id="mountains_front" />
   </section>
 </template>
@@ -37,6 +43,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   overflow: hidden;
 }
 
@@ -103,5 +110,15 @@ section img#mountains_front {
 .sec p {
   font-size: 1em;
   color: #fff;
+}
+.support {
+  z-index: 100000;
+  margin-top: 20vh;
+  a {
+    font-weight: 800;
+    color: #ff9f40;
+    font-size: clamp(1.25rem, 1.0511rem + 0.5682vw, 1.5rem);
+    user-select: none;
+  }
 }
 </style>
