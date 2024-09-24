@@ -1,6 +1,15 @@
 <script lang="ts" setup>
+const { locale, locales } = useI18n()
+const switchLocalePath = useSwitchLocalePath()
+
+const availableLocales = computed(() => {
+  return locales.value.filter((i) => i.code !== locale.value)
+})
+
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+let LOC = useLocale()
 
 gsap.registerPlugin(ScrollTrigger)
 onMounted(() => {
@@ -85,13 +94,19 @@ onMounted(() => {
 </script>
 
 <template>
+  <div style="position: absolute; top: 0;">
+    locales:
+    <NuxtLink v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">
+      {{ locale.name }}
+    </NuxtLink>
+  </div>
   <div class="descent-gradient">
     <v-container style="height: 100%; overflow: hidden">
       <v-row>
         <v-col cols="12" style="height: 90vh" class="text-center">
-          <div class="main-title">Калькулятор</div>
+          <div class="main-title">{{ LOC.mainTitle }}</div>
           <div class="instruction-container">
-            <div class="instruction">Инструкция</div>
+            <div class="instruction">{{ LOC.instruction }}</div>
             <span class="mdi mdi-arrow-down"></span>
           </div>
         </v-col>
@@ -103,7 +118,7 @@ onMounted(() => {
               <v-card class="pa-4" style="z-index: 9999">
                 <v-row>
                   <v-col cols="12">
-                    <h2>Извлекайте корень из положительных и отрицательных чисел</h2>
+                    <h2>{{ LOC.firstCard }}</h2>
                   </v-col>
                 </v-row>
                 <CalculatorExample :inputValues="['14', '-22', '11', '4']" :key="0" :showAccuracy="false" />
@@ -118,7 +133,7 @@ onMounted(() => {
               <v-card class="pa-4" style="z-index: 9999">
                 <v-row>
                   <v-col cols="12">
-                    <h2>Настраивайте количество знаков после запятой</h2>
+                    <h2>{{ LOC.secondCard }}</h2>
                   </v-col>
                 </v-row>
                 <CalculatorExample :inputValues="['2']" :key="1" :showAccuracy="true" />
@@ -133,7 +148,7 @@ onMounted(() => {
               <v-card class="pa-4" style="z-index: 9999">
                 <v-row>
                   <v-col cols="12">
-                    <h2>Извлекайте корень из комплексных чисел</h2>
+                    <h2>{{ LOC.thirdCard }}</h2>
                   </v-col>
                 </v-row>
                 <CalculatorExample :inputValues="['2i', '-2 + 4i', '4i', '2 + 2i']" :key="0" :showAccuracy="false" />
@@ -194,7 +209,6 @@ onMounted(() => {
     rgba(42, 145, 169, 1) 75%,
     rgba(2, 31, 75, 1) 100%
   );
-
   height: 100%;
 }
 

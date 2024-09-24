@@ -1,4 +1,5 @@
 <script setup lang="ts">
+let LOC = useLocale()
 onMounted(() => {})
 </script>
 <template>
@@ -16,7 +17,7 @@ onMounted(() => {})
     <Calculator :key="5" />
     <div class="support cursor-pointer">
       <a href="https://t.me/unenhi" target="_blank">
-        Служба поддержки
+        {{ LOC.support }}
       </a>
     </div>
     <img src="../assets/images/mountains_front.png" alt="mountains_front" id="mountains_front" />

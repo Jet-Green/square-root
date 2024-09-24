@@ -3,6 +3,8 @@ import { gsap } from "gsap"
 import { TextPlugin } from "gsap/TextPlugin"
 gsap.registerPlugin(TextPlugin)
 
+let LOC = useLocale()
+
 let props = defineProps<{
   inputValues: string[]
   showAccuracy: boolean
@@ -125,7 +127,7 @@ function calculate() {
         // без пробелов и с Re и Im
         let complexRegexWithoutSpaces = new RegExp(/[-]?[0-9]+[,.]*[0-9]*[+-]+[0-9]*[,.]?[0-9]*[i]{1}$/)
         if (complexRegexWithoutSpaces.test(splitted[0])) {
-          errors.value = ["Выделите знак пробелами"]
+          errors.value = [LOC.calc.enterSpaces]
           return
         } else {
           let I
@@ -161,7 +163,7 @@ function calculate() {
         }
       }
     } else {
-      errors.value = ["Это не число"]
+      errors.value = [LOC.calc.nanError]
       result.value = ""
     }
   }
@@ -207,7 +209,7 @@ onUnmounted(() => {
       >
     </v-col>
     <v-col :cols="12" v-if="showAccuracy">
-      <div class="text-caption">Знаков после запятой</div>
+      <div class="text-caption">{{ LOC.calc.digitsCount }}</div>
       <v-slider v-model="accuracy" :thumb-label="true" :step="1" :min="0" :max="12" hide-details :color="sliderColor">
         <template v-slot:append> 😍 </template>
         <template v-slot:prepend> 😢 </template>
@@ -215,7 +217,6 @@ onUnmounted(() => {
       </v-slider>
     </v-col>
   </v-row>
-  <!-- <v-text-field v-model="accuracy" type="number" :min="1" placeholder="Кол-во знаков после запятой"></v-text-field> -->
 </template>
 <style scoped lang="scss">
 .result {

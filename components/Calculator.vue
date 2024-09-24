@@ -3,6 +3,8 @@ import { gsap } from "gsap"
 import { TextPlugin } from "gsap/TextPlugin"
 gsap.registerPlugin(TextPlugin)
 
+let LOC = useLocale()
+
 let calcInput = ref<string>("")
 let result = ref<string>()
 let accuracy = ref<number>(2)
@@ -88,7 +90,7 @@ function calculate() {
         // без пробелов и с Re и Im
         let complexRegexWithoutSpaces = new RegExp(/[-]?[0-9]+[,.]*[0-9]*[+-]+[0-9]*[,.]?[0-9]*[i]{1}$/)
         if (complexRegexWithoutSpaces.test(splitted[0])) {
-          errors.value = ["Выделите знак пробелами"]
+          errors.value = [LOC.calc.enterSpaces]
           return
         } else {
           let I
@@ -124,7 +126,7 @@ function calculate() {
         }
       }
     } else {
-      errors.value = ["Это не число"]
+      errors.value = [LOC.calc.nanError]
       result.value = ""
     }
   }
@@ -164,7 +166,7 @@ watch(calcInput, (newInp, oldInp) => {
         <span class="result">= <span id="calc-result"></span></span>
       </v-col>
       <v-col :cols="12">
-        <div class="text-caption">Знаков после запятой</div>
+        <div class="text-caption">{{ LOC.calc.digitsCount }}</div>
         <v-slider v-model="accuracy" :thumb-label="true" :step="1" :min="0" :max="12" hide-details :color="sliderColor">
           <template v-slot:append> 😍 </template>
           <template v-slot:prepend> 😢 </template>

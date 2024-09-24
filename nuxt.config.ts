@@ -2,6 +2,25 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
+const LOCALES: any = [
+  {
+    code: 'en',
+    name: 'English'
+  },
+  {
+    code: 'es',
+    name: 'Español'
+  },
+  {
+    code: 'fr',
+    name: 'Français'
+  },
+  {
+    code: 'ru',
+    name: 'Русский'
+  }
+]
+
 export default defineNuxtConfig({
   ssr: false,
 
@@ -17,6 +36,7 @@ export default defineNuxtConfig({
     // },
   // },
   modules: [
+    '@nuxtjs/i18n',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error
@@ -39,5 +59,13 @@ export default defineNuxtConfig({
   },
   devServer: {
     port: 3022
+  },
+  i18n: {
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root' // recommended
+    },
+    locales: LOCALES
   }
 })
