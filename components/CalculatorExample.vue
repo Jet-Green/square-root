@@ -49,7 +49,7 @@ function shuffleAccuracy() {
   }
   if (showAccuracy.value) {
     shuffleAccuracyId = setInterval(() => {
-      accuracy.value = randomIntFromInterval(1, 12);
+      accuracy.value = randomIntFromInterval(0, 12)
     }, 1500)
   }
 }
@@ -86,7 +86,6 @@ function calculate() {
 
     if (complexRegex.test(String(calcInput.value))) {
       let splitted = calcInput.value.split(" ")
-      console.log(splitted)
 
       // если введено с R и с I частью
       if (splitted.length == 3) {
@@ -112,7 +111,13 @@ function calculate() {
         const sin = Math.sin(fi / 2)
 
         result.value =
-          String((nZ * cos).toFixed(accuracy.value)) + " + " + "i" + String((nZ * sin).toFixed(accuracy.value))
+          "±" +
+          "(" +
+          String((nZ * cos).toFixed(accuracy.value)) +
+          " + " +
+          String((nZ * sin).toFixed(accuracy.value)) +
+          "i" +
+          ")"
         return
       }
       // если введено только с I частью
@@ -120,7 +125,7 @@ function calculate() {
         // без пробелов и с Re и Im
         let complexRegexWithoutSpaces = new RegExp(/[-]?[0-9]+[,.]*[0-9]*[+-]+[0-9]*[,.]?[0-9]*[i]{1}$/)
         if (complexRegexWithoutSpaces.test(splitted[0])) {
-          errors.value = ["Нужны пробелы между числами"]
+          errors.value = ["Выделите знак пробелами"]
           return
         } else {
           let I
@@ -128,7 +133,11 @@ function calculate() {
           if (splitted[0].length == 1) {
             I = 1
           } else {
-            I = Number(splitted[0].replace("i", ""))
+            if (splitted[0] == "-i") {
+              I = -1
+            } else {
+              I = Number(splitted[0].replace("i", ""))
+            }
           }
           const z = Math.abs(I)
 
@@ -145,8 +154,8 @@ function calculate() {
             "(" +
             String((nZ * cos).toFixed(accuracy.value)) +
             " + " +
-            "i " +
             String((nZ * sin).toFixed(accuracy.value)) +
+            "i" +
             ")"
           return
         }
@@ -199,7 +208,7 @@ onUnmounted(() => {
     </v-col>
     <v-col :cols="12" v-if="showAccuracy">
       <div class="text-caption">Знаков после запятой</div>
-      <v-slider v-model="accuracy" :thumb-label="true" :step="1" :min="1" :max="12" hide-details :color="sliderColor">
+      <v-slider v-model="accuracy" :thumb-label="true" :step="1" :min="0" :max="12" hide-details :color="sliderColor">
         <template v-slot:append> 😍 </template>
         <template v-slot:prepend> 😢 </template>
         <!-- {{ ['😭', '😢', '☹️', '🙁', '😐', '🙂', '😊', '😁', '😄', '😍'][Math.min(Math.floor(modelValue / 10), 10)] }} -->
