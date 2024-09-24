@@ -12,12 +12,16 @@ const LOCALES: any = [
     name: 'Español'
   },
   {
-    code: 'fr',
-    name: 'Français'
+    code: 'zh',
+    name: '中文'
   },
   {
     code: 'ru',
     name: 'Русский'
+  },
+  {
+    code: "de",
+    name: "Deutsch"
   }
 ]
 

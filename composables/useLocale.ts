@@ -28,6 +28,48 @@ export default function() {
       },
       locale: 'en'
     },
+    {
+      mainTitle: "Calculadora",
+      instruction: "Instrucción",
+      firstCard: "Saca la raíz de números positivos y negativos",
+      secondCard: "Ajustar el número de decimales",
+      thirdCard: "Sacar la raíz de números complejos",
+      support: "Apoyo técnico",
+      calc: {
+        nanError: "no es un numero",
+        enterSpaces: "Separar el personaje con espacios",
+        digitsCount: "Número de decimales",
+      },
+      locale: 'es'
+    },
+    {
+      mainTitle: "计算器",
+      instruction: "操作说明",
+      firstCard: "求正数和负数的根",
+      secondCard: "调整小数位数",
+      thirdCard: "求复数的根",
+      support: "技术支援",
+      calc: {
+        nanError: "这不是一个数字",
+        enterSpaces: "用空格分隔字符",
+        digitsCount: "小数位数",
+      },
+      locale: 'zh'
+    },
+    {
+      mainTitle: "Kalkulator",
+      instruction: "Anweisung",
+      firstCard: "Ziehen Sie die Wurzel aus positiven und negativen Zahlen",
+      secondCard: "Passen Sie die Anzahl der Dezimalstellen an",
+      thirdCard: "Wurzelbildung aus komplexen Zahlen",
+      support: "Technische Unterstützung",
+      calc: {
+        nanError: "Es ist keine Zahl",
+        enterSpaces: "Trennen Sie die Zeichen durch Leerzeichen",
+        digitsCount: "Anzahl der Dezimalstellen",
+      },
+      locale: 'de'
+    },
   ]
 
   let c = useCookie('i18n_redirected')
