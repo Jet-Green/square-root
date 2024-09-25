@@ -14,7 +14,6 @@ export default function() {
       },
       userGuide: "Руководство пользователя",
       locale: 'ru',
-      guideFile: "../assets/Руководство_пользователя_сайта_Умный_калькулятор.docx"
     },
     {
       mainTitle: "Calculator",
@@ -30,7 +29,6 @@ export default function() {
       },
       userGuide: "User guide",
       locale: 'en',
-      guideFile: "../assets/The user's guide to the Smart Calculator website.docx"
     },
     {
       mainTitle: "Calculadora",
@@ -46,7 +44,6 @@ export default function() {
       },
       userGuide: "guía de usuario",
       locale: 'es',
-      guideFile: "../assets/Guía del usuario del sitio web Calculadora Inteligente.docx"
     },
     {
       mainTitle: "计算器",
@@ -62,7 +59,6 @@ export default function() {
       },
       userGuide: "用户指南",
       locale: 'zh',
-      guideFile: "../assets/智能计算器网站用户指南.docx"
     },
     {
       mainTitle: "Kalkulator",
@@ -78,7 +74,6 @@ export default function() {
       },
       userGuide: "Bedienungsanleitung",
       locale: 'de',
-      guideFile: "../assets/Website-Benutzerhandbuch Intelligenter Taschenrechner.docx"
     },
   ]
 

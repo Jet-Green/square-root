@@ -50,7 +50,7 @@ onMounted(() => {})
         <v-card-text class="pa-8">
           <v-row>
             <v-col>
-              <a :href="LOC.guideFile" :download="LOC.guideFile" target="_blank">
+              <a href="https://drive.google.com/drive/folders/1aQCRqzu2h3PFDiP5NaDDcTKU54yLByXL?usp=sharing" target="_blank">
                 <v-icon style="font-size: 50px;">mdi-file-document-outline</v-icon>
               </a> 
             </v-col>
