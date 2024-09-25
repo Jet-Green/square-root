@@ -13,7 +13,8 @@ export default function() {
         digitsCount: "Знаков после запятой",
       },
       userGuide: "Руководство пользователя",
-      locale: 'ru'
+      locale: 'ru',
+      guideFile: "../assets/Руководство_пользователя_сайта_Умный_калькулятор.docx"
     },
     {
       mainTitle: "Calculator",
@@ -28,7 +29,8 @@ export default function() {
         digitsCount: "Number of decimal places",
       },
       userGuide: "User guide",
-      locale: 'en'
+      locale: 'en',
+      guideFile: "../assets/The user's guide to the Smart Calculator website.docx"
     },
     {
       mainTitle: "Calculadora",
@@ -43,7 +45,8 @@ export default function() {
         digitsCount: "Número de decimales",
       },
       userGuide: "guía de usuario",
-      locale: 'es'
+      locale: 'es',
+      guideFile: "../assets/Guía del usuario del sitio web Calculadora Inteligente.docx"
     },
     {
       mainTitle: "计算器",
@@ -58,7 +61,8 @@ export default function() {
         digitsCount: "小数位数",
       },
       userGuide: "用户指南",
-      locale: 'zh'
+      locale: 'zh',
+      guideFile: "../assets/智能计算器网站用户指南.docx"
     },
     {
       mainTitle: "Kalkulator",
@@ -73,7 +77,8 @@ export default function() {
         digitsCount: "Anzahl der Dezimalstellen",
       },
       userGuide: "Bedienungsanleitung",
-      locale: 'de'
+      locale: 'de',
+      guideFile: "../assets/Website-Benutzerhandbuch Intelligenter Taschenrechner.docx"
     },
   ]
 
