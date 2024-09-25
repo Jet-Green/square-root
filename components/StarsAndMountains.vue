@@ -2,6 +2,8 @@
 let LOC = useLocale()
 
 let dialog = ref<boolean>()
+let guideDialog = ref<boolean>()
+
 onMounted(() => {})
 </script>
 <template>
@@ -20,6 +22,10 @@ onMounted(() => {})
     <div class="support cursor-pointer" @click="dialog = true">
       {{ LOC.support }}
     </div>
+
+    <div class="user-guide" @click="guideDialog = true">
+      {{ LOC.userGuide }}
+    </div>
     <img src="../assets/images/mountains_front.png" alt="mountains_front" id="mountains_front" />
     <v-dialog v-model="dialog" width="auto" height="auto">
       <v-card class="d-flex">
@@ -33,6 +39,19 @@ onMounted(() => {})
             <v-col>
               <a href="https://t.me/unenhi" target="_blank">
                 <img src="../assets/images/telegram.png" alt="" style="height: 50px; cursor: pointer;">
+              </a> 
+            </v-col>
+          </v-row>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="guideDialog" width="auto" height="auto">
+      <v-card class="d-flex">
+        <v-card-text class="pa-8">
+          <v-row>
+            <v-col>
+              <a href="https://t.me/unenhi" target="_blank">
+                <v-icon style="font-size: 50px;">mdi-file-document-outline</v-icon>
               </a> 
             </v-col>
           </v-row>
@@ -138,5 +157,15 @@ section img#mountains_front {
   color: #ff9f40;
   font-size: clamp(1.25rem, 1.0511rem + 0.5682vw, 1.5rem);
   user-select: none;
+}
+.user-guide {
+  position: absolute;
+  bottom: 20px;
+  z-index: 1000;
+  font-weight: 800;
+  color: #ff9f40;
+  font-size: clamp(1.25rem, 1.0511rem + 0.5682vw, 1.5rem);
+  user-select: none;
+  cursor: pointer;
 }
 </style>

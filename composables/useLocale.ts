@@ -12,6 +12,7 @@ export default function() {
         enterSpaces: "Выделите знак пробелами",
         digitsCount: "Знаков после запятой",
       },
+      userGuide: "Руководство пользователя",
       locale: 'ru'
     },
     {
@@ -26,6 +27,7 @@ export default function() {
         enterSpaces: "Separate the character with spaces",
         digitsCount: "Number of decimal places",
       },
+      userGuide: "User guide",
       locale: 'en'
     },
     {
@@ -40,6 +42,7 @@ export default function() {
         enterSpaces: "Separar el personaje con espacios",
         digitsCount: "Número de decimales",
       },
+      userGuide: "guía de usuario",
       locale: 'es'
     },
     {
@@ -54,6 +57,7 @@ export default function() {
         enterSpaces: "用空格分隔字符",
         digitsCount: "小数位数",
       },
+      userGuide: "用户指南",
       locale: 'zh'
     },
     {
@@ -68,6 +72,7 @@ export default function() {
         enterSpaces: "Trennen Sie die Zeichen durch Leerzeichen",
         digitsCount: "Anzahl der Dezimalstellen",
       },
+      userGuide: "Bedienungsanleitung",
       locale: 'de'
     },
   ]
